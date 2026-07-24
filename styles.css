@@ -129,9 +129,37 @@ h1 {
 }
 
 .session-card p {
-  margin-bottom: 0;
+  margin-bottom: 16px;
   color: var(--muted);
   line-height: 1.45;
+}
+
+.session-card .nav-link + .nav-link {
+  margin-top: 8px;
+}
+
+.nav-link {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #b8cbc7;
+  border-radius: 8px;
+  padding: 0 13px;
+  background: #dcf2ee;
+  color: #0b4f49;
+  font-size: 0.88rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.nav-link-secondary {
+  background: var(--surface);
+}
+
+.nav-link:hover {
+  border-color: var(--green);
+  background: #c9ebe5;
 }
 
 .toolbar {
@@ -356,6 +384,75 @@ dd {
   grid-template-columns: minmax(240px, 0.55fr) minmax(360px, 1.45fr);
 }
 
+.playbook-shell {
+  max-width: 980px;
+}
+
+.playbook-hero {
+  min-height: 300px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 28px;
+  align-items: end;
+  border-bottom: 1px solid var(--line);
+  padding: 28px 0 34px;
+}
+
+.page-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.playbook-content {
+  display: grid;
+  gap: 24px;
+  padding-top: 28px;
+}
+
+.playbook-content section {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  background: var(--surface);
+}
+
+.playbook-content h2 {
+  margin-bottom: 12px;
+  font-size: 1.55rem;
+}
+
+.playbook-content h3 {
+  margin: 18px 0 8px;
+  font-size: 1rem;
+}
+
+.playbook-content p,
+.playbook-content li {
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.playbook-content p {
+  margin-bottom: 12px;
+}
+
+.playbook-content p:last-child,
+.playbook-content ul:last-child {
+  margin-bottom: 0;
+}
+
+.playbook-content blockquote {
+  margin: 0 0 16px;
+  border-left: 4px solid var(--yellow);
+  padding: 4px 0 4px 16px;
+  color: var(--ink);
+  font-size: 1.16rem;
+  font-weight: 800;
+  line-height: 1.42;
+}
+
 .step-list {
   display: grid;
   gap: 14px;
@@ -423,6 +520,7 @@ pre {
   }
 
   .hero,
+  .playbook-hero,
   .toolbar,
   .stats,
   .card-grid,
@@ -436,6 +534,10 @@ pre {
   }
 
   .filter-group {
+    justify-content: flex-start;
+  }
+
+  .page-nav {
     justify-content: flex-start;
   }
 }

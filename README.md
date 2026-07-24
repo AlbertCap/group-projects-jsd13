@@ -31,7 +31,7 @@ The webpage includes a beginner-friendly contribution guide at the bottom of
 Short version:
 
 1. Clone or fork the repository.
-2. Create a branch, for example `git checkout -b add-05-alice-card`.
+2. Create a branch, for example `git checkout -b add-05-faii-card`.
 3. Edit only your object in `cohort-webpage/data/learners.js`.
 4. Preview `cohort-webpage/index.html` in a browser.
 5. Check your work with `git status` and `git diff`.

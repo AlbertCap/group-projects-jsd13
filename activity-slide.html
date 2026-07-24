@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Team Formation Activity</title>
+    <style>
+      :root {
+        color: #182223;
+        background: #edf3f1;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        --ink: #182223;
+        --muted: #556b68;
+        --line: #c9d8d4;
+        --panel: #ffffff;
+        --green: #0f766e;
+        --blue: #2563eb;
+        --yellow: #f5b301;
+        --red: #dc2626;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+
+      .slide {
+        width: min(1280px, 100%);
+        min-height: min(720px, calc(100vh - 48px));
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        gap: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--panel);
+        padding: 34px;
+        box-shadow: 0 24px 80px rgb(15 45 42 / 14%);
+      }
+
+      header {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 28px;
+        align-items: start;
+      }
+
+      .eyebrow {
+        margin: 0 0 8px;
+        color: var(--green);
+        font-size: 0.86rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 900px;
+        margin-bottom: 0;
+        color: var(--ink);
+        font-size: clamp(2.4rem, 5vw, 4.7rem);
+        line-height: 0.98;
+      }
+
+      .principle {
+        max-width: 330px;
+        border-left: 4px solid var(--yellow);
+        padding-left: 16px;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.35;
+      }
+
+      .header-aside {
+        display: grid;
+        gap: 16px;
+        justify-items: end;
+      }
+
+      .page-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: flex-end;
+      }
+
+      .nav-link {
+        min-height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #b8cbc7;
+        border-radius: 8px;
+        padding: 0 13px;
+        background: #dcf2ee;
+        color: #0b4f49;
+        font-size: 0.88rem;
+        font-weight: 850;
+        text-decoration: none;
+      }
+
+      .nav-link-secondary {
+        background: var(--panel);
+      }
+
+      .nav-link:hover {
+        border-color: var(--green);
+        background: #c9ebe5;
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 1.05fr 1fr;
+        gap: 24px;
+        align-items: stretch;
+      }
+
+      .timeline,
+      .lanes {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+
+      .phase {
+        display: grid;
+        grid-template-columns: 112px 1fr;
+        gap: 16px;
+        align-items: start;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 15px;
+        background: #fbfdfc;
+      }
+
+      .time {
+        color: var(--green);
+        font-size: 0.9rem;
+        font-weight: 800;
+      }
+
+      h2 {
+        margin-bottom: 8px;
+        font-size: 1.03rem;
+      }
+
+      .phase p,
+      .lane p,
+      .rule p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 0.94rem;
+        line-height: 1.42;
+      }
+
+      .rounds {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .round {
+        border-radius: 8px;
+        padding: 10px;
+        background: #e8f6f3;
+        color: #164e48;
+        font-size: 0.87rem;
+        font-weight: 750;
+        text-align: center;
+      }
+
+      .lane-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .lane {
+        min-height: 230px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 18px;
+        background: #ffffff;
+      }
+
+      .lane h2 {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .icon {
+        width: 34px;
+        height: 34px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 50%;
+        color: #ffffff;
+        font-size: 1rem;
+      }
+
+      .learners .icon {
+        background: var(--blue);
+      }
+
+      .instructors .icon {
+        background: var(--green);
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.1rem;
+      }
+
+      li {
+        margin: 0 0 9px;
+        color: var(--muted);
+        font-size: 0.94rem;
+        line-height: 1.34;
+      }
+
+      .rules {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .rule {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 15px;
+        background: #fbfdfc;
+      }
+
+      .rule strong {
+        display: block;
+        margin-bottom: 5px;
+        color: var(--ink);
+      }
+
+      footer {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: center;
+        border-top: 1px solid var(--line);
+        padding-top: 18px;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .outcome {
+        color: var(--ink);
+        font-size: 1.08rem;
+        font-weight: 800;
+      }
+
+      .badge {
+        border: 1px solid #b7cac6;
+        border-radius: 999px;
+        padding: 8px 12px;
+        color: #274240;
+        font-size: 0.82rem;
+        font-weight: 800;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 920px) {
+        body {
+          display: block;
+          padding: 0;
+        }
+
+        .slide {
+          min-height: 100vh;
+          border: 0;
+          border-radius: 0;
+          padding: 22px;
+          box-shadow: none;
+        }
+
+        header,
+        .content,
+        footer {
+          grid-template-columns: 1fr;
+        }
+
+        .principle {
+          max-width: none;
+        }
+
+        .header-aside {
+          justify-items: start;
+        }
+
+        .page-nav {
+          justify-content: flex-start;
+        }
+
+        .phase,
+        .lane-grid,
+        .rules {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media print {
+        body {
+          padding: 0;
+          background: #ffffff;
+        }
+
+        .slide {
+          width: 100vw;
+          min-height: 100vh;
+          border: 0;
+          box-shadow: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="slide" aria-labelledby="slide-title">
+      <header>
+        <div>
+          <p class="eyebrow">Group Project Team Formation</p>
+          <h1 id="slide-title">How the activity works</h1>
+        </div>
+        <div class="header-aside">
+          <p class="principle">
+            Maximize learner agency while minimizing public rejection and
+            deadlocks.
+          </p>
+          <nav class="page-nav" aria-label="Website navigation">
+            <a class="nav-link" href="./index.html">Cohort cards</a>
+            <a class="nav-link nav-link-secondary" href="./playbook.html"
+              >Read playbook</a
+            >
+          </nav>
+        </div>
+      </header>
+
+      <section class="content" aria-label="Activity flow and participant roles">
+        <div class="timeline" aria-label="Session timeline">
+          <article class="phase">
+            <div class="time">Before</div>
+            <div>
+              <h2>Build the Cohort Webpage</h2>
+              <p>
+                Every learner contributes a profile card through Git/GitHub.
+                Team Leader candidates add extra answers about facilitation.
+              </p>
+            </div>
+          </article>
+
+          <article class="phase">
+            <div class="time">13:00</div>
+            <div>
+              <h2>Browse Cards and Elect Leaders</h2>
+              <p>
+                The class reviews cards for working style, interests, goals, and
+                leader answers. Leader voting stays anonymous.
+              </p>
+            </div>
+          </article>
+
+          <article class="phase">
+            <div class="time">13:40</div>
+            <div>
+              <h2>Submit Private Preferences</h2>
+              <p>
+                Non-leaders rank their top three Team Leaders while using cards
+                for context, not public popularity.
+              </p>
+            </div>
+          </article>
+
+          <article class="phase">
+            <div class="time">13:55</div>
+            <div>
+              <h2>Form Teams Through Structured Invites</h2>
+              <p>
+                Teams invite privately using preferences plus card information.
+                Learners choose privately if they receive multiple invitations.
+              </p>
+              <div class="rounds" aria-label="Invitation rounds">
+                <span class="round">Round 1: leader invites</span>
+                <span class="round">Round 2: pair agrees</span>
+                <span class="round">Round 3: team majority</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="phase">
+            <div class="time">15:20</div>
+            <div>
+              <h2>Complete Remaining Matches</h2>
+              <p>
+                Unassigned learners rank remaining teams, teams rank interested
+                learners, and matching continues until everyone has a team.
+              </p>
+            </div>
+          </article>
+
+          <article class="phase">
+            <div class="time">After break</div>
+            <div>
+              <h2>First Team Meeting</h2>
+              <p>
+                Teams align on availability, roles, communication, Git workflow,
+                decision-making, conflict resolution, and first project ideas.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <div class="lanes">
+          <section class="lane-grid">
+            <article class="lane learners">
+              <h2><span class="icon">L</span> Learners</h2>
+              <ul>
+                <li>Customize one profile card through code.</li>
+                <li>
+                  Declare Team Leader interest on the card if volunteering.
+                </li>
+                <li>Browse cards before private votes and preferences.</li>
+                <li>Accept or decline invitations privately.</li>
+                <li>Join team decisions once accepted.</li>
+              </ul>
+            </article>
+
+            <article class="lane instructors">
+              <h2><span class="icon">I</span> Instructors</h2>
+              <ul>
+                <li>Provide the card template and GitHub workflow.</li>
+                <li>Review card PRs for completeness and professionalism.</li>
+                <li>Open and close each phase on time.</li>
+                <li>Monitor team sizes and incomplete matches.</li>
+                <li>Stay neutral: learners choose teams.</li>
+              </ul>
+            </article>
+          </section>
+
+          <section class="rules" aria-label="Guardrails">
+            <article class="rule">
+              <strong>Visibility rule</strong>
+              <p>
+                Cards replace public pitches: everyone is seen without live
+                audition pressure.
+              </p>
+            </article>
+            <article class="rule">
+              <strong>Decision rule</strong>
+              <p>
+                Consensus is preferred; majority vote or random draw resolves
+                deadlocks.
+              </p>
+            </article>
+            <article class="rule">
+              <strong>Privacy rule</strong>
+              <p>
+                Votes, preferences, invitations, accepts, and declines stay
+                private.
+              </p>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          <span class="outcome"
+            >Session outcome: 100% assigned, zero manual instructor picks.</span
+          >
+          <br />
+          Cards inform decisions; Team Leaders organize discussion and are not
+          the boss.
+        </div>
+        <span class="badge">Designed for a single facilitated session</span>
+      </footer>
+    </main>
+  </body>
+</html>
