@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cohort Team Formation Cards</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Group Project Team Formation</p>
+          <h1>Cohort profile cards</h1>
+          <p class="lede">
+            Browse how people work, what they want to learn, and who is
+            volunteering to facilitate a team.
+          </p>
+        </div>
+
+        <aside class="session-card" aria-label="Activity guardrails">
+          <span class="status-dot"></span>
+          <h2>Use cards for fit, not popularity</h2>
+          <p>
+            Learners contribute through code. Team Leaders invite privately
+            during structured rounds.
+          </p>
+        </aside>
+      </header>
+
+      <section class="toolbar" aria-label="Profile controls">
+        <label class="search-field">
+          <span>Search</span>
+          <input
+            id="profile-search"
+            type="search"
+            placeholder="Name, skill, interest, availability"
+          />
+        </label>
+
+        <div class="filter-group" aria-label="Profile type filter">
+          <button
+            class="filter-button is-active"
+            type="button"
+            data-filter="all"
+          >
+            All
+          </button>
+          <button class="filter-button" type="button" data-filter="leader">
+            Team Leaders
+          </button>
+          <button class="filter-button" type="button" data-filter="member">
+            Team Members
+          </button>
+        </div>
+      </section>
+
+      <section class="stats" aria-label="Cohort summary">
+        <article>
+          <strong id="total-count">0</strong>
+          <span>Total cards</span>
+        </article>
+        <article>
+          <strong id="leader-count">0</strong>
+          <span>Leader candidates</span>
+        </article>
+        <article>
+          <strong id="member-count">0</strong>
+          <span>Member profiles</span>
+        </article>
+      </section>
+
+      <section id="cards" class="card-grid" aria-live="polite"></section>
+
+      <section class="contribution-panel" aria-labelledby="template-title">
+        <div>
+          <p class="eyebrow">Contribute your card</p>
+          <h2 id="template-title">Edit <code>data/learners.js</code></h2>
+          <p>
+            Add one object to <code>window.cohortProfiles</code>. Keep answers
+            concrete and professional so teammates can make informed choices.
+          </p>
+        </div>
+        <pre><code>{
+  name: "Your Name",
+  roleIntent: "member",
+  interests: ["Frontend", "Testing"],
+  strength: "I make interfaces clear and consistent.",
+  growthGoal: "I want to get faster with API integration.",
+  workingStyle: "I like short check-ins and clear task ownership.",
+  availability: "Weeknights after 19:00, Sunday afternoon",
+  teammateValue: "Reliable communication and willingness to review PRs",
+  projectIdea: "A marketplace for second-hand course materials",
+  leaderAnswers: null,
+}</code></pre>
+      </section>
+
+      <section class="workflow-guide" aria-labelledby="workflow-title">
+        <div class="workflow-intro">
+          <p class="eyebrow">GitHub workflow</p>
+          <h2 id="workflow-title">How to contribute your profile card</h2>
+          <p>
+            Work in your own branch, edit only your learner object, then open a
+            pull request for review.
+          </p>
+        </div>
+
+        <ol class="step-list">
+          <li>
+            <h3>Fork or clone the repository</h3>
+            <p>
+              If your instructor asks for forks, click <strong>Fork</strong> on
+              GitHub first. Then clone your copy to your computer.
+            </p>
+            <pre><code>git clone &lt;repository-url&gt;
+cd &lt;repository-folder&gt;</code></pre>
+          </li>
+
+          <li>
+            <h3>Create your own branch</h3>
+            <p>
+              Use your JSD number or nickname so the branch is easy to review.
+            </p>
+            <pre><code>git checkout -b add-05-faii-card</code></pre>
+          </li>
+
+          <li>
+            <h3>Find your object</h3>
+            <p>
+              Open <code>cohort-webpage/data/learners.js</code>, search for your
+              JSD username, and edit only your own profile object.
+            </p>
+          </li>
+
+          <li>
+            <h3>Fill in your answers</h3>
+            <p>
+              Replace blank strings with specific answers. Add interests inside
+              the array, for example <code>["Frontend", "Testing"]</code>.
+            </p>
+            <p>
+              If you want to be a Team Leader, change
+              <code>roleIntent</code> to <code>"leader"</code> and copy the
+              example <code>leaderAnswers</code> structure.
+            </p>
+          </li>
+
+          <li>
+            <h3>Preview the webpage</h3>
+            <p>
+              Open <code>cohort-webpage/index.html</code> in your browser and
+              check that your card looks correct.
+            </p>
+          </li>
+
+          <li>
+            <h3>Check your changes</h3>
+            <p>
+              Confirm that only the expected file changed before committing.
+            </p>
+            <pre><code>git status
+git diff</code></pre>
+          </li>
+
+          <li>
+            <h3>Commit your work</h3>
+            <p>Stage your edited file and write a clear commit message.</p>
+            <pre><code>git add cohort-webpage/data/learners.js
+git commit -m "Add Faii profile card"</code></pre>
+          </li>
+
+          <li>
+            <h3>Push and open a pull request</h3>
+            <p>
+              Push your branch to GitHub, then open a pull request into the main
+              repository.
+            </p>
+            <pre><code>git push origin add-05-faii-card</code></pre>
+          </li>
+        </ol>
+      </section>
+    </main>
+
+    <template id="profile-card-template">
+      <article class="profile-card">
+        <div class="card-header">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h2></h2>
+            <p class="role-label"></p>
+          </div>
+        </div>
+
+        <div class="tag-list"></div>
+
+        <dl class="answers">
+          <div>
+            <dt>Strength</dt>
+            <dd data-field="strength"></dd>
+          </div>
+          <div>
+            <dt>Growth goal</dt>
+            <dd data-field="growthGoal"></dd>
+          </div>
+          <div>
+            <dt>Working style</dt>
+            <dd data-field="workingStyle"></dd>
+          </div>
+          <div>
+            <dt>Availability</dt>
+            <dd data-field="availability"></dd>
+          </div>
+          <div>
+            <dt>Values in a teammate</dt>
+            <dd data-field="teammateValue"></dd>
+          </div>
+          <div>
+            <dt>Project idea</dt>
+            <dd data-field="projectIdea"></dd>
+          </div>
+        </dl>
+
+        <section class="leader-section" hidden>
+          <h3>Team Leader answers</h3>
+          <dl class="answers leader-answers"></dl>
+        </section>
+      </article>
+    </template>
+
+    <script src="./data/learners.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
