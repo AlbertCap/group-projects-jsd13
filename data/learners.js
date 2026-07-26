@@ -173,7 +173,7 @@ window.cohortProfiles = [
     genMate: "C",
     roleIntent: "member",
     interests: ["Frontend", "Backend", "Testing"],
-    strength: "I can learn new things very fast and adapt quickly to new situations. From my financial advisor background, I'm good at analyzing data and solving problems in a logical way. I also have experience talking with clients and working under pressure.",
+    strength: "I can learn new things very fast and adapt quickly to new situations. From my financial advisor background, I'm good at analyzing data and solving problems in a logical way. I'm comfortable working with tight deadlines and competing priorities.",
     growthGoal: "I want to master JavaScript, React, and backend frameworks. In the long term",
     workingStyle: "I prefer breaking down tasks into clear steps before coding. I like to understand the full picture, then work independently with check-ins. I communicate regularly about progress and blockers",
     availability: "Weekdays 18:30-21:30. Saturday 11:00-18:00. (I'm happy to work extra hours when we need to.)",
